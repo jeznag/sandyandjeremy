@@ -1,12 +1,12 @@
 {
-  "name": "mayaandkeshal.com",
+  "name": "SandyandJeremy.com",
   "version": "1.0.0",
-  "homepage": "http://mayaandkeshal.com",
-  "description": "The wedding of Maya and Keshal",
+  "homepage": "http://SandyandJeremy.com",
+  "description": "The wedding of Sandy and Jeremy",
   "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "http://github.com/pritak/mayaandkeshal.com.git"
+    "url": "http://github.com/pritak/SandyandJeremy.com.git"
   },
   "dependencies": {
     "airtable": "^0.5.2",
@@ -30,7 +30,7 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "surge --project ./dist --domain mayaandkeshal.com"
+      "pre-push": "surge --project ./dist --domain SandyandJeremy.com"
     }
   },
   "scripts": {

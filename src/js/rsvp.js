@@ -1,7 +1,11 @@
 var Airtable = require('airtable');
-var base = new Airtable({ apiKey: 'keywa5ZLO1p8Ktr3k' }).base('apprgAOTwWeThXI1O');
+var base = new Airtable({ apiKey: '' }).base('');
 var id, names, invites, rsvpNum, updatedNames;
 var emailInput = document.getElementById("email-input");
+
+base('RSVPs').select().firstPage().then((data) => {
+    console.log(data);
+});
 
 emailInput.addEventListener("keyup", function (event) {
     // Cancel the default action, if needed
