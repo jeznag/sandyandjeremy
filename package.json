@@ -11,7 +11,13 @@
   "dependencies": {
     "airtable": "^0.5.2",
     "bulma": "^0.6.1",
+    "dotenv": "^8.0.0",
     "jquery": "^3.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-form": "^8.2.0",
     "scrollreveal": "^3.3.6"
   },
   "devDependencies": {
