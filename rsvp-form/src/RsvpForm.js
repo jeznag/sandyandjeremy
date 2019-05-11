@@ -150,6 +150,13 @@ const RsvpForm = props => {
         disabled
       />
       <FieldArray name="guests" component={renderGuests} />
+      <Field
+        name="role"
+        type="text"
+        component={renderTextField}
+        label="Role"
+        disabled
+      />
       <div>
         <button type="submit" disabled={submitting}>
           Submit
