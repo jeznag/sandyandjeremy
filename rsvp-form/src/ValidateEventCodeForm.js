@@ -7,7 +7,7 @@ async function handleCheckEventCode(
   e,
   validateFields,
   setErrorMessage,
-  setEventCode,
+  setEventData,
   setIsLoading
 ) {
   e.preventDefault(true);
@@ -19,7 +19,7 @@ async function handleCheckEventCode(
 
         setIsLoading(false);
         if (matchingEventData.data.events.length) {
-          setEventCode(matchingEventData.data.events[0].event_code);
+          setEventData(matchingEventData.data.events[0]);
         } else {
           setErrorMessage("Invalid event code");
         }
@@ -35,7 +35,7 @@ function UnwrappedValidateEventCodeForm(props) {
   const [errorMessage, setErrorMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const { getFieldDecorator } = props.form;
-  const { setEventCode } = props;
+  const { setEventData } = props;
 
   return (
     <Form
@@ -44,7 +44,7 @@ function UnwrappedValidateEventCodeForm(props) {
           e,
           props.form.validateFields,
           setErrorMessage,
-          setEventCode,
+          setEventData,
           setIsLoading
         )
       }

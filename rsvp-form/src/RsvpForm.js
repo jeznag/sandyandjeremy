@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Button, Divider, Form, Input, Select } from "antd";
 
 import { FieldArray } from "./components/FieldArray";
@@ -7,18 +7,60 @@ const validateAndSubmit = (e, validateFields, submitHandler) => {
   e.preventDefault();
   validateFields((err, values) => {
     if (!err) {
-      debugger;
       submitHandler(values);
     }
   });
 };
 
+const renderRolesSubform = (form, eventData) => {
+  if (eventData.help_needed.length === 0) {
+    return null;
+  }
+  return (
+    <Fragment>
+      <Divider orientation="left" className="first">
+        We'd love your help to make the ceremony awesome. How can you help?
+      </Divider>
+      <FieldArray
+        {...form}
+        name="roles"
+        panelName={dataForThisRow => {
+          return `${dataForThisRow.roleName || ""}`;
+        }}
+        fields={[
+          {
+            name: "roleName",
+            field: () => (
+              <Select placeholder="Role">
+                {eventData.help_needed.map(availableRole => (
+                  <Select.Option
+                    key={availableRole.role_type}
+                    value={availableRole.role_type}
+                  >
+                    {availableRole.role_type}
+                  </Select.Option>
+                ))}
+              </Select>
+            )
+          },
+          {
+            name: "details",
+            field: () => <Input.TextArea rows={4} placeholder={"Details"} />
+          }
+        ]}
+      />
+    </Fragment>
+  );
+};
+
 const UnwrappedRSVPForm = props => {
-  const { form } = props;
+  const { form, eventData } = props;
 
   return (
     <Form
-      onSubmit={e => validateAndSubmit(e, props.form.validateFields, props.onSubmit)}
+      onSubmit={e =>
+        validateAndSubmit(e, props.form.validateFields, props.onSubmit)
+      }
     >
       {/* TODO show event details */}
       <Divider orientation="left" className="first">
@@ -27,6 +69,10 @@ const UnwrappedRSVPForm = props => {
       <FieldArray
         {...form}
         name="guests"
+        panelName={dataForThisRow => {
+          return `${dataForThisRow.firstName || ""} ${dataForThisRow.lastName ||
+            ""}`;
+        }}
         fields={[
           {
             name: "firstName",
@@ -52,31 +98,7 @@ const UnwrappedRSVPForm = props => {
           }
         ]}
       />
-      <Divider orientation="left" className="first">
-        We'd love your help to make the ceremony awesome. How can you help?
-      </Divider>
-      <FieldArray
-        {...form}
-        name="roles"
-        fields={[
-          {
-            name: "roleName",
-            field: () => (
-              <Select placeholder="Role">
-                <Select.Option value="photographer">Photography</Select.Option>
-                <Select.Option value="catering">Catering</Select.Option>
-                <Select.Option value="dance_teacher">
-                  Dance teaching
-                </Select.Option>
-              </Select>
-            )
-          },
-          {
-            name: "details",
-            field: () => <Input.TextArea rows={4} placeholder={"Details"} />
-          }
-        ]}
-      />
+      {renderRolesSubform(form, eventData)}
       <Button type="primary" htmlType="submit">
         RSVP
       </Button>

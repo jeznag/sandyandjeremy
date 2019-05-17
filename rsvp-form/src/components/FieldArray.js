@@ -10,22 +10,29 @@ export class FieldArray extends Component {
   id = 1;
 
   add = () => {
-    const { getFieldValue, setFieldsValue, name } = this.props,
-      keys = getFieldValue(`${name}List`),
-      nextKeys = keys.concat(this.id++);
+    const { getFieldValue, setFieldsValue, name } = this.props;
+    const { keys } = getFieldValue(`${name}List`);
+    const newRowKey = this.id++;
+    const nextKeys = keys.concat(newRowKey);
 
     setFieldsValue({
-      [`${name}List`]: nextKeys
+      [`${name}List`]: {
+        keys: nextKeys,
+        openPanels: [newRowKey.toString()]
+      }
     });
   };
 
-  remove = k => () => {
-    const { getFieldValue, setFieldsValue, name } = this.props,
-      keys = getFieldValue(`${name}List`);
+  remove = keyToRemove => () => {
+    const { getFieldValue, setFieldsValue, name } = this.props;
+    const { keys, openPanels } = getFieldValue(`${name}List`);
 
     if (keys.length === 1) return;
     setFieldsValue({
-      [`${name}List`]: keys.filter(key => key !== k)
+      [`${name}List`]: {
+        keys: keys.filter(key => key !== keyToRemove),
+        openPanels: openPanels.filter(panelKey => panelKey !== keyToRemove)
+      }
     });
   };
 
@@ -40,51 +47,53 @@ export class FieldArray extends Component {
     ]
   });
 
-  addSingleField = () => {
-    const { getFieldDecorator, getFieldValue, fields: obj, name } = this.props;
-    getFieldDecorator(`${name}List`, { initialValue: [0] });
-    const fieldCounter = getFieldValue(`${name}List`);
-    return fieldCounter.map(k => (
-      <Form.Item key={k}>
-        {getFieldDecorator(
-          `${name}[${k}]`,
-          obj.validation || this.defaultValidation(name)
-        )(obj.field())}
-        {fieldCounter.length > 1 ? (
-          <Icon
-            className="dynamic-delete-button"
-            type="minus-circle-o"
-            onClick={this.remove(k)}
-          />
-        ) : null}
-      </Form.Item>
-    ));
+  handlePanelChange = openPanels => {
+    const { getFieldValue, setFieldsValue, name } = this.props;
+    const { keys } = getFieldValue(`${name}List`);
+
+    setFieldsValue({
+      [`${name}List`]: {
+        keys,
+        openPanels
+      }
+    });
   };
 
-  addMultipleFields = () => {
+  getFieldArrayRows = () => {
     const { getFieldDecorator, getFieldValue, fields, name } = this.props;
-    getFieldDecorator(`${name}List`, { initialValue: [0] });
-    const fieldCounter = getFieldValue(`${name}List`);
+    getFieldDecorator(`${name}List`, {
+      initialValue: {
+        keys: [0],
+        openPanels: ["0"]
+      }
+    });
+    const { keys, openPanels } = getFieldValue(`${name}List`);
 
-    const rows = fieldCounter.reduce((preResult, rowIdx) => {
+    console.log(openPanels);
+    const rows = keys.reduce((preResult, rowKey) => {
       const row = fields.map((obj, i) => (
-        <Form.Item key={`${rowIdx}${obj.name}`}>
+        <Form.Item key={`${rowKey}${obj.name}`}>
           {getFieldDecorator(
-            `${name}[${rowIdx}][${obj.name}]`,
+            `${name}[${rowKey}][${obj.name}]`,
             obj.validation || this.defaultValidation(name)
           )(obj.field())}
-          {fieldCounter.length > 1 && fields.length - 1 === i ? (
-            <Icon
-              className="dynamic-delete-button"
-              type="minus-circle-o"
-              onClick={this.remove(rowIdx)}
-            />
+          {keys.length > 1 && fields.length - 1 === i ? (
+            <Fragment>
+              <Icon
+                className="dynamic-delete-button"
+                type="minus-circle-o"
+                onClick={this.remove(rowKey)}
+              />
+              Remove
+            </Fragment>
           ) : null}
         </Form.Item>
       ));
 
+      const panelName = this.props.panelName(getFieldValue(name)[rowKey]);
+
       const RowWithPanel = (
-        <Panel header="TODO" key={rowIdx}>
+        <Panel header={panelName} key={rowKey}>
           {row}
         </Panel>
       );
@@ -92,16 +101,18 @@ export class FieldArray extends Component {
       return [...preResult, RowWithPanel];
     }, []);
 
-    return <Collapse defaultActiveKey={[0]}>{rows}</Collapse>;
+    return (
+      <Collapse onChange={this.handlePanelChange} activeKey={openPanels}>
+        {rows}
+      </Collapse>
+    );
   };
 
   render() {
-    const { fields, name } = this.props;
+    const { name } = this.props;
     return (
       <Fragment>
-        {Array.isArray(fields)
-          ? this.addMultipleFields()
-          : this.addSingleField()}
+        {this.getFieldArrayRows()}
         <Form.Item>
           <Button type="dashed" onClick={this.add} style={{ width: "60%" }}>
             <Icon type="plus" /> Add &nbsp; {name}

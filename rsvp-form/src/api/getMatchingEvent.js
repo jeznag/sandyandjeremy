@@ -8,6 +8,9 @@ export function getMatchingEvent(eventCode) {
         event_id
         event_name
         event_code
+        help_needed(where: {vacancies_remaining: {_gt: 0}}) {
+          role_type
+        }
       }
     }
   `;

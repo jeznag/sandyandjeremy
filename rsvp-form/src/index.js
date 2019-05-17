@@ -9,7 +9,7 @@ import "antd/dist/antd.css";
 
 const rootEl = document.getElementById("root");
 
-async function handleSubmit(values, eventCode, setLoading, setSubmitted) {
+async function handleSubmit(values, eventData, setLoading, setSubmitted) {
   const mainGuest = values.guests[0];
   const additionalGuests = values.guests.slice(1);
   const roles = values.roles;
@@ -17,7 +17,7 @@ async function handleSubmit(values, eventCode, setLoading, setSubmitted) {
   setLoading(true);
   try {
     const createRsvpResult = await createRSVP(
-      eventCode,
+      eventData,
       mainGuest,
       additionalGuests,
       roles
@@ -31,8 +31,8 @@ async function handleSubmit(values, eventCode, setLoading, setSubmitted) {
 }
 
 function getComponentToDisplay(
-  eventCode,
-  setEventcode,
+  eventData,
+  setEventData,
   isLoading,
   setLoading,
   isSubmitted,
@@ -46,28 +46,29 @@ function getComponentToDisplay(
     return <Spin tip="Loading..." />;
   }
 
-  if (!eventCode) {
-    return <ValidateEventCodeForm setEventCode={setEventcode} />;
+  if (!eventData) {
+    return <ValidateEventCodeForm setEventData={setEventData} />;
   }
 
   return (
     <RsvpForm
       onSubmit={values =>
-        handleSubmit(values, eventCode, setLoading, setSubmitted)
+        handleSubmit(values, eventData, setLoading, setSubmitted)
       }
+      eventData={eventData}
     />
   );
 }
 
 function App() {
-  const [eventCode, setEventCode] = useState();
+  const [eventData, setEventCode] = useState();
   const [isLoading, setLoading] = useState(false);
   const [isSubmitted, setSubmitted] = useState(false);
   return (
     <div style={{ padding: 15 }}>
       <h2>RSVP</h2>
       {getComponentToDisplay(
-        eventCode,
+        eventData,
         setEventCode,
         isLoading,
         setLoading,

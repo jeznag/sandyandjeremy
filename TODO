@@ -1,4 +1,6 @@
-[] Fix panel
-[] Get list of available roles from backend
+[] Decrement vacant roles during mutation
+[] Focus on first name when adding new guest
+[] Add tests
+[] Clean up useState
 [] Typescript
 [] NextJS
