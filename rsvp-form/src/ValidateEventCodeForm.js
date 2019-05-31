@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Alert, Button, Form, Input, Spin } from "antd";
 import { getMatchingEvent } from "./api/getMatchingEvent";
 
-async function handleCheckEventCode(
+async function handleSubmitEventCode(
   e,
   validateFields,
   setErrorMessage,
@@ -13,34 +13,57 @@ async function handleCheckEventCode(
   e.preventDefault(true);
   validateFields(async (err, values) => {
     if (!err) {
-      setIsLoading(true);
-      try {
-        const matchingEventData = await getMatchingEvent(values.eventCode);
-
-        setIsLoading(false);
-        if (matchingEventData.data.events.length) {
-          setEventData(matchingEventData.data.events[0]);
-        } else {
-          setErrorMessage("Invalid event code");
-        }
-      } catch (e) {
-        setIsLoading(false);
-        setErrorMessage("Invalid event code");
-      }
+      checkEventCode(
+        values.eventCode,
+        setErrorMessage,
+        setEventData,
+        setIsLoading
+      );
     }
   });
+}
+
+async function checkEventCode(
+  eventCode,
+  setErrorMessage,
+  setEventData,
+  setIsLoading
+) {
+  setIsLoading(true);
+  try {
+    const matchingEventData = await getMatchingEvent(eventCode);
+
+    setIsLoading(false);
+    if (matchingEventData.data.events.length) {
+      setEventData(matchingEventData.data.events[0]);
+    } else {
+      setErrorMessage("Invalid event code");
+    }
+  } catch (e) {
+    setIsLoading(false);
+    setErrorMessage("Invalid event code");
+  }
 }
 
 function UnwrappedValidateEventCodeForm(props) {
   const [errorMessage, setErrorMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [isFirstRender, setIsFirstRender] = useState(true);
   const { getFieldDecorator } = props.form;
   const { setEventData } = props;
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const rsvpEventCodeFromURL = queryParams.get("rsvp-event-code");
+
+  if (rsvpEventCodeFromURL && isFirstRender) {
+    setIsFirstRender(false);
+    checkEventCode(rsvpEventCodeFromURL, setErrorMessage, setEventData, setIsLoading);
+  }
 
   return (
     <Form
       onSubmit={e =>
-        handleCheckEventCode(
+        handleSubmitEventCode(
           e,
           props.form.validateFields,
           setErrorMessage,
@@ -60,6 +83,7 @@ function UnwrappedValidateEventCodeForm(props) {
       {isLoading && <Spin tip="Loading..." />}
       <Form.Item>
         {getFieldDecorator("eventCode", {
+          initialValue: rsvpEventCodeFromURL,
           rules: [
             {
               required: true,

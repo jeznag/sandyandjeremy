@@ -12,8 +12,6 @@
     gtag('config', 'UA-117162422-1');
   </script>
 
-
-
   <title>S&J - RSVP</title>
 
   <meta charset="utf-8">
@@ -29,7 +27,6 @@
   <meta name="keywords" content="Wedding, Chinese, Australia, China, Marriage, Wife, Husband">
   <meta name="author" content="Jeremy Nagel, Sandy Xu">
 
-
   <!--[htmlclean-protect]-->
   <!-- inject:css -->
   <!-- endinject -->
@@ -38,9 +35,9 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/animate.css">
+  <link href="/static/css/2.1ad4406c.chunk.css" rel="stylesheet">
   <!--</Deject>-->
 </head>
-
 
 <body>
   <div id="registry-modal" class="modal">
@@ -49,7 +46,7 @@
       <div class="notification is-link">
         <button id="modal-close" class="delete"></button>
         Your presence is present enough. We don't want gifts, we'd rather you contribute to the celebration - bring your special talents (musicians/dance teachers/photographers especially welcome) and for the Sydney/Brisbane celebrations, some food and drink to share (Melbourne will be catered). We're intentionally keeping the budget for the wedding very small because <a href="https://www.psychologytoday.com/us/blog/heart-the-matter/201604/when-it-comes-weddings-does-cost-really-matter">research indicates that the more you spend, the less happy your marriage is</a>. Therefore, please don't feel like you need to contribute financially for the cost of the wedding. If you really want to get us something, please donate to one of the effective charities <a href="https://effectivealtruism.org.au/partner-charities/">listed here</a>.
-        
+
       </div>
     </div>
   </div>
@@ -105,20 +102,14 @@
 
         <div id="rsvp-box" class="box">
           <div id="rsvp-initial">
-            <div class="field">
-              <label class="label is-medium">Let's find your RSVP</label>
-              <div class="control">
-                <input id="email-input" class="input is-medium" type="text" placeholder="Email address">
-              </div>
-              <p id="help-message" class="help">Enter the email address that your invitation was sent to</p>
-              <div class="field">
-                <p class="control">
-                  <button id="check-email" onclick="checkEmail()" class="button is-link is-medium">
-                    Continue
-                  </button>
-                </p>
-              </div>
-            </div>
+            <div id="root"></div>
+            <script>
+              !function (l) { function e(e) { for (var r, t, n = e[0], o = e[1], u = e[2], f = 0, i = []; f < n.length; f++)t = n[f], p[t] && i.push(p[t][0]), p[t] = 0; for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (l[r] = o[r]); for (s && s(e); i.length;)i.shift()(); return c.push.apply(c, u || []), a() } function a() { for (var e, r = 0; r < c.length; r++) { for (var t = c[r], n = !0, o = 1; o < t.length; o++) { var u = t[o]; 0 !== p[u] && (n = !1) } n && (c.splice(r--, 1), e = f(f.s = t[0])) } return e } var t = {}, p = { 1: 0 }, c = []; function f(e) { if (t[e]) return t[e].exports; var r = t[e] = { i: e, l: !1, exports: {} }; return l[e].call(r.exports, r, r.exports, f), r.l = !0, r.exports } f.m = l, f.c = t, f.d = function (e, r, t) { f.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, f.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, f.t = function (r, e) { if (1 & e && (r = f(r)), 8 & e) return r; if (4 & e && "object" == typeof r && r && r.__esModule) return r; var t = Object.create(null); if (f.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: r }), 2 & e && "string" != typeof r) for (var n in r) f.d(t, n, function (e) { return r[e] }.bind(null, n)); return t }, f.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return f.d(r, "a", r), r }, f.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, f.p = "/"; var r = window.webpackJsonp = window.webpackJsonp || [], n = r.push.bind(r); r.push = e, r = r.slice(); for (var o = 0; o < r.length; o++)e(r[o]); var s = n; a() }([])
+            </script>
+            <script src="/static/js/2.1dc70ad0.chunk.js">
+            </script>
+            <script src="/static/js/main.beef83bb.chunk.js">
+            </script>
           </div>
         </div>
       </div>
@@ -139,9 +130,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-  <script src="../node_modules/airtable/build/airtable.browser.js"></script>
   <script src="js/scroll-animations.js"></script>
-  <script src="js/rsvp.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/pace.js"></script>

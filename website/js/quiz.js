@@ -140,6 +140,10 @@ var questions = [
 ];
 
 $(document).ready(function() {
+  if (!location.href.includes('quiz.html')) {
+    return;
+  }
+
   advanceQuiz();
   addEventListeners();
 

@@ -1,16 +1,6 @@
-// hosted on glitch.com
-// https://glitch.com/edit/#!/decorous-door?path=server.js:29:0
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.get("/", (req, res) => {
-  res.send("Webhooks are running");
-});
-
-app.get("/simple/webhook", (request, response) => {
+module.exports = (request, response) => {
   // Extract event code header
-  const eventCode = request.get("X-RSVP_EVENT_CODE");
+  const eventCode = request.headers["x-rsvp_event_code"];
 
   const hasuraVariables = {
     "X-Hasura-Role": "user",
@@ -19,10 +9,7 @@ app.get("/simple/webhook", (request, response) => {
     // restrict access to events matching the event code
     "X-Hasura-User-Id": eventCode
   };
-  response.json(hasuraVariables);
-});
 
-// listen for requests :)
-const listener = app.listen(port, function() {
-  console.log("Your app is listening on port " + port);
-});
+  response.setHeader("Content-Type", "application/json");
+  response.end(JSON.stringify(hasuraVariables, null, 4));
+};

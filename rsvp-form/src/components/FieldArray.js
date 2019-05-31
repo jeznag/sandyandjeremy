@@ -69,7 +69,6 @@ export class FieldArray extends Component {
     });
     const { keys, openPanels } = getFieldValue(`${name}List`);
 
-    console.log(openPanels);
     const rows = keys.reduce((preResult, rowKey) => {
       const row = fields.map((obj, i) => (
         <Form.Item key={`${rowKey}${obj.name}`}>
@@ -84,12 +83,11 @@ export class FieldArray extends Component {
                 type="minus-circle-o"
                 onClick={this.remove(rowKey)}
               />
-              Remove
+              {` Remove`}
             </Fragment>
           ) : null}
         </Form.Item>
       ));
-
       const panelName = this.props.panelName(getFieldValue(name)[rowKey]);
 
       const RowWithPanel = (

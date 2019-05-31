@@ -53,6 +53,19 @@ const renderRolesSubform = (form, eventData) => {
   );
 };
 
+const eventDetails = eventData => {
+  return (
+    <div>
+      <p>We can't wait to see you at the {eventData.event_name}!</p>
+      <p>Here are the details:</p>
+      <p>Venue: {eventData.event_venue}</p>
+      <p>Date: {eventData.event_date}</p>
+      <p>Time: {eventData.event_time}</p>
+      <p>Other details: {eventData.event_description}</p>
+    </div>
+  );
+};
+
 const UnwrappedRSVPForm = props => {
   const { form, eventData } = props;
 
@@ -62,6 +75,7 @@ const UnwrappedRSVPForm = props => {
         validateAndSubmit(e, props.form.validateFields, props.onSubmit)
       }
     >
+      {eventDetails(eventData)}
       {/* TODO show event details */}
       <Divider orientation="left" className="first">
         Who's coming along?

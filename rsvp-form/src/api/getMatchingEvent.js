@@ -8,6 +8,10 @@ export function getMatchingEvent(eventCode) {
         event_id
         event_name
         event_code
+        event_venue
+        event_description
+        event_date
+        event_time
         help_needed(where: {vacancies_remaining: {_gt: 0}}) {
           role_type
         }
