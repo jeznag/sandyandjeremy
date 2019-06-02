@@ -1,12 +1,12 @@
 {
-  "name": "SandyandJeremy.com",
+  "name": "SandyandJeremy.us",
   "version": "1.0.0",
-  "homepage": "http://SandyandJeremy.com",
+  "homepage": "http://SandyandJeremy.us",
   "description": "The wedding of Sandy and Jeremy",
   "main": "index.html",
   "repository": {
     "type": "git",
-    "url": "http://github.com/pritak/SandyandJeremy.com.git"
+    "url": "http://github.com/pritak/SandyandJeremy.us.git"
   },
   "dependencies": {
     "airtable": "^0.5.2",
@@ -36,7 +36,7 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "surge --project ./dist --domain SandyandJeremy.com"
+      "pre-push": "surge --project ./dist --domain SandyandJeremy.us"
     }
   },
   "scripts": {
