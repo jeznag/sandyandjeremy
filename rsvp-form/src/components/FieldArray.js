@@ -60,22 +60,41 @@ export class FieldArray extends Component {
   };
 
   getFieldArrayRows = () => {
-    const { getFieldDecorator, getFieldValue, fields, name } = this.props;
+    const {
+      getFieldDecorator,
+      getFieldValue,
+      fields,
+      name,
+      initialValue
+    } = this.props;
+    const initialPanelValues = initialValue
+      ? initialValue.reduce(
+          (result, fieldArrayData, idx) => ({
+            keys: result.keys.concat(idx),
+            openPanels: result.openPanels.concat(idx.toString())
+          }),
+          {
+            keys: [],
+            openPanels: []
+          }
+        )
+      : {
+          keys: [0],
+          openPanels: ["0"]
+        };
     getFieldDecorator(`${name}List`, {
-      initialValue: {
-        keys: [0],
-        openPanels: ["0"]
-      }
+      initialValue: initialPanelValues
     });
     const { keys, openPanels } = getFieldValue(`${name}List`);
 
     const rows = keys.reduce((preResult, rowKey) => {
-      const row = fields.map((obj, i) => (
-        <Form.Item key={`${rowKey}${obj.name}`}>
-          {getFieldDecorator(
-            `${name}[${rowKey}][${obj.name}]`,
-            obj.validation || this.defaultValidation(name)
-          )(obj.field())}
+      const row = fields.map((fieldData, i) => {
+        const initialValueForField = initialValue && initialValue[rowKey][fieldData.name];
+        return (<Form.Item key={`${rowKey}${fieldData.name}`}>
+          {getFieldDecorator(`${name}[${rowKey}][${fieldData.name}]`, {
+            initialValue: initialValueForField,
+            validate: fieldData.validation || [this.defaultValidation(name)]
+          })(fieldData.field())}
           {keys.length > 1 && fields.length - 1 === i ? (
             <Fragment>
               <Icon
@@ -87,7 +106,8 @@ export class FieldArray extends Component {
             </Fragment>
           ) : null}
         </Form.Item>
-      ));
+      )
+      });
       const panelName = this.props.panelName(getFieldValue(name)[rowKey]);
 
       const RowWithPanel = (

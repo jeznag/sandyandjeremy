@@ -156,6 +156,13 @@ html, body {
   background-attachment: fixed;
 }
 
+.couple-background {
+  background-image: url(/images/couple-hero.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center
+}
+
 .underline {
   border-bottom: 3px solid currentColor;
   padding-bottom: 6px;
@@ -198,24 +205,20 @@ p {
   border-radius: 10px;
 }
 
-#main {
-  background-image: url("../images/c-3-color.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 #rsvp {
   background-image: url("../images/geometry2.png");
 }
 
-.rsvp-label {
+.label-highlight {
   position: relative;
   z-index: 1000;
 }
 
-.rsvp-label:after {
+.margin-top-lg {
+  margin-top: 7rem;
+}
+
+.label-highlight:after {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(60%, transparent), color-stop(60%, #FFE87B), color-stop(88%, #FFE87B), color-stop(88%, transparent));
   background: linear-gradient(to bottom, transparent 0%, transparent 60%, #FFE87B 60%, #FFE87B 88%, transparent 88%);
   content: '';
@@ -227,7 +230,19 @@ p {
   left: 0.3em;
 }
 
-.rsvp-label-2 {
+.position-fixed {
+  position: fixed;
+}
+
+.hero-label-highlight::after {
+  height: 3.5em;
+  width: 110%;
+  bottom: -0.4em;
+  left: 0em;
+  padding: 2em;
+}
+
+.label-highlight-2 {
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(55%, transparent), color-stop(55%, #FFE87B), color-stop(90%, #FFE87B), color-stop(90%, transparent));
   background: linear-gradient(to bottom, transparent 0%, transparent 55%, #FFE87B 55%, #FFE87B 90%, transparent 90%);
 }
@@ -4144,7 +4159,7 @@ a.box:active {
           order: -1;
 }
 
-.file-label {
+.file-label-highlight {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
@@ -4159,21 +4174,21 @@ a.box:active {
   position: relative;
 }
 
-.file-label:hover .file-cta {
+.file-label-highlight:hover .file-cta {
   background-color: #eeeeee;
   color: #363636;
 }
 
-.file-label:hover .file-name {
+.file-label-highlight:hover .file-name {
   border-color: #d5d5d5;
 }
 
-.file-label:active .file-cta {
+.file-label-highlight:active .file-cta {
   background-color: #e8e8e8;
   color: #363636;
 }
 
-.file-label:active .file-name {
+.file-label-highlight:active .file-name {
   border-color: #cfcfcf;
 }
 
@@ -11030,5 +11045,304 @@ label.panel-block:hover {
 .footer {
   background-color: #0A0909;
   padding: 3rem 1.5rem 6rem;
+}
+
+#rsvp-initial #root {
+  min-height: 100px;
+}
+
+/* -- Loading thingy --*/
+.loading-dot {
+    border-radius:100%;
+    height:10px;
+    width:10px;
+    background-color: #000;
+    position:absolute;
+    left:0;
+    right:0;
+    margin:auto;
+    top:0;
+    bottom:0;
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+    -webkit-animation: load 3s infinite linear;
+    -moz-animation: load 3s infinite linear;
+    -o-animation: load 3s infinite linear;
+    animation:load 3s infinite linear;
+}
+
+@-webkit-keyframes load {
+  0%   {
+    -webkit-transform: translate(0px,0px),rotate(0deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  25%{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  50%{
+    box-shadow: 0px -40px 0px 0px #000,0px 40px 0px 0px #000,-40px 0px 0px 0px #000,40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  70%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+  }
+
+  75%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    height:10px;
+    width:10px;
+  }
+
+  80%{
+    -webkit-transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  85%{
+    -webkit-transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  90%{
+    -webkit-transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:10px;
+    width:10px;
+  }
+
+  95{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  100%{
+    -webkit-transform: rotate(360deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+}
+
+@-moz-keyframes load {
+  0%   {
+    -moz-transform: translate(0px,0px),rotate(0deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  25%{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  50%{
+    box-shadow: 0px -40px 0px 0px #000,0px 40px 0px 0px #000,-40px 0px 0px 0px #000,40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  70%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+  }
+
+  75%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    height:10px;
+    width:10px;
+  }
+
+  80%{
+    -moz-transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  85%{
+    -moz-transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  90%{
+    -moz-transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:10px;
+    width:10px;
+  }
+
+  95{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  100%{
+    -moz-transform: rotate(360deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+}
+
+@keyframes load {
+  0%   {
+    transform: translate(0px,0px),rotate(0deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  25%{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  50%{
+    box-shadow: 0px -40px 0px 0px #000,0px 40px 0px 0px #000,-40px 0px 0px 0px #000,40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  70%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+  }
+
+  75%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    height:10px;
+    width:10px;
+  }
+
+  80%{
+    transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  85%{
+    transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  90%{
+    transform: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:10px;
+    width:10px;
+  }
+
+  95{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  100%{
+    transform: rotate(360deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+}
+@-o-keyframes load {
+  0%   {
+    -o-transforms: translate(0px,0px),rotate(0deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  25%{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  50%{
+    box-shadow: 0px -40px 0px 0px #000,0px 40px 0px 0px #000,-40px 0px 0px 0px #000,40px 0px 0px 0px #000,
+    -40px -40px 0px 0px #000,40px 40px 0px 0px #000,-40px 40px 0px 0px #000,40px -40px 0px 0px #000;
+  }
+
+  70%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+  }
+
+  75%{
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    height:10px;
+    width:10px;
+  }
+
+  80%{
+    -o-transforms: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  85%{
+    -o-transforms: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:40px;
+    width:40px;
+  }
+
+  90%{
+    -o-transforms: translate(0px,0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,
+    0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000,0px 0px 0px 0px #000;
+    background-color: #000;
+    height:10px;
+    width:10px;
+  }
+
+  95{
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
+  100%{
+    -o-transforms: rotate(360deg);
+    box-shadow: 0px 40px 0px 0px #000,0px -40px 0px 0px #000,40px 0px 0px 0px #000,-40px 0px 0px 0px #000,
+    40px 40px 0px 0px #000,-40px -40px 0px 0px #000,40px -40px 0px 0px #000,-40px 40px 0px 0px #000;
+  }
+
 }
 /*# sourceMappingURL=styles.css.map */

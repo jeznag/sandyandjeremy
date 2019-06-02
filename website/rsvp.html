@@ -36,20 +36,13 @@
   <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/animate.css">
   <link href="/static/css/2.1ad4406c.chunk.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+
   <!--</Deject>-->
 </head>
 
 <body>
-  <div id="registry-modal" class="modal">
-    <div class="modal-background"></div>
-    <div class="modal-content animated bounceIn">
-      <div class="notification is-link">
-        <button id="modal-close" class="delete"></button>
-        Your presence is present enough. We don't want gifts, we'd rather you contribute to the celebration - bring your special talents (musicians/dance teachers/photographers especially welcome) and for the Sydney/Brisbane celebrations, some food and drink to share (Melbourne will be catered). We're intentionally keeping the budget for the wedding very small because <a href="https://www.psychologytoday.com/us/blog/heart-the-matter/201604/when-it-comes-weddings-does-cost-really-matter">research indicates that the more you spend, the less happy your marriage is</a>. Therefore, please don't feel like you need to contribute financially for the cost of the wedding. If you really want to get us something, please donate to one of the effective charities <a href="https://effectivealtruism.org.au/partner-charities/">listed here</a>.
-
-      </div>
-    </div>
-  </div>
   <nav id="global-nav" class="navbar is-fixed-top is-transparent">
     <div class="container">
       <div class="navbar-brand">
@@ -70,14 +63,8 @@
           <a class="navbar-item" href="schedule.html">
             <strong>Schedule</strong>
           </a>
-          <a class="navbar-item" href="travel.html">
-            <strong>Travel</strong>
-          </a>
           <a class="navbar-item is-active" href="rsvp.html">
             <strong class="tag is-size-6 is-link">RSVP</strong>
-          </a>
-          <a class="navbar-item" id="registry-click">
-            <strong>Registry</strong>
           </a>
           <a class="navbar-item" href="faq.html">
             <strong>FAQs</strong>
@@ -94,7 +81,7 @@
         <br class="is-hidden-mobile">
         <br class="is-hidden-mobile">
         <br class="is-hidden-mobile">
-        <span class="is-size-2 rsvp-label-2">
+        <span class="is-size-2 label-highlight-2">
           <strong id="rsvp-title">Say You'll Be There!</strong>
         </span>
         <br>
@@ -102,13 +89,15 @@
 
         <div id="rsvp-box" class="box">
           <div id="rsvp-initial">
-            <div id="root"></div>
+            <div id="root">
+              <div class="loading-dot"></div>
+            </div>
             <script>
               !function (l) { function e(e) { for (var r, t, n = e[0], o = e[1], u = e[2], f = 0, i = []; f < n.length; f++)t = n[f], p[t] && i.push(p[t][0]), p[t] = 0; for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (l[r] = o[r]); for (s && s(e); i.length;)i.shift()(); return c.push.apply(c, u || []), a() } function a() { for (var e, r = 0; r < c.length; r++) { for (var t = c[r], n = !0, o = 1; o < t.length; o++) { var u = t[o]; 0 !== p[u] && (n = !1) } n && (c.splice(r--, 1), e = f(f.s = t[0])) } return e } var t = {}, p = { 1: 0 }, c = []; function f(e) { if (t[e]) return t[e].exports; var r = t[e] = { i: e, l: !1, exports: {} }; return l[e].call(r.exports, r, r.exports, f), r.l = !0, r.exports } f.m = l, f.c = t, f.d = function (e, r, t) { f.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, f.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, f.t = function (r, e) { if (1 & e && (r = f(r)), 8 & e) return r; if (4 & e && "object" == typeof r && r && r.__esModule) return r; var t = Object.create(null); if (f.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: r }), 2 & e && "string" != typeof r) for (var n in r) f.d(t, n, function (e) { return r[e] }.bind(null, n)); return t }, f.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return f.d(r, "a", r), r }, f.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, f.p = "/"; var r = window.webpackJsonp = window.webpackJsonp || [], n = r.push.bind(r); r.push = e, r = r.slice(); for (var o = 0; o < r.length; o++)e(r[o]); var s = n; a() }([])
             </script>
-            <script src="/static/js/2.1dc70ad0.chunk.js">
+            <script src="/static/js/2.1a137dc5.chunk.js">
             </script>
-            <script src="/static/js/main.beef83bb.chunk.js">
+            <script src="/static/js/main.8706041f.chunk.js">
             </script>
           </div>
         </div>
@@ -129,8 +118,6 @@
   <!--<Deject>-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-  <script src="js/scroll-animations.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/pace.js"></script>

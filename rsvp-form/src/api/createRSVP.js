@@ -1,5 +1,6 @@
 import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
+import { getRoleParts, ROLE_NAME_IDX, HELP_NEEDED_ID_IDX } from '../utils/getRoleParts';
 
 function getRoleMutationFragment(roles) {
   return `[
@@ -7,7 +8,7 @@ function getRoleMutationFragment(roles) {
       role =>
         `
         {
-          role_name: "${role.roleName}",
+          role_name: "${getRoleParts(role.roleName)[ROLE_NAME_IDX]}",
           details: "${role.details}"
         }`
     )}
@@ -29,9 +30,42 @@ function getAdditionalGuestMutationFragment(eventCode, additionalGuests) {
   ]`.replace(/[\s]{2,}/g, " ");
 }
 
-function generateRSVPMutation(eventCode, mainGuest, additionalGuests, roles) {
-  debugger;
+function generateHelpNeededMutations(roles) {
+  const rolesGroupedByHelpNeededId = roles.reduce((result, role) => {
+    const helpNeededId = getRoleParts(role.roleName)[HELP_NEEDED_ID_IDX];
+    if (!result[helpNeededId]) {
+      result[helpNeededId] = 1;
+    } else {
+      result[helpNeededId] = result[helpNeededId] + 1;
+    }
+    return result;
+  }, {});
+  return Object.keys(rolesGroupedByHelpNeededId)
+    .map(helpNeededId => {
+      const numRolesFilled = rolesGroupedByHelpNeededId[helpNeededId];
+      return gql`
+        mutation update_help_needed {
+          update_help_needed(
+            _inc: {
+              number_filled: ${numRolesFilled},
+              vacancies_remaining: ${numRolesFilled * -1}
+            },
+            where: {
+              help_needed_id: {
+                _eq: ${helpNeededId}
+              }
+            }
+          ) {
+            affected_rows
+            returning {
+              vacancies_remaining
+            }
+          }
+        }`;
+    })
+}
 
+function generateRSVPMutation(eventCode, mainGuest, additionalGuests, roles) {
   return gql`
     mutation insert_rsvps {
       insert_rsvps(
@@ -78,22 +112,30 @@ function generateRSVPMutation(eventCode, mainGuest, additionalGuests, roles) {
   `;
 }
 
-export function createRSVP(eventCode, mainGuest, additionalGuests, roles) {
+export function createRSVP(eventData, mainGuest, additionalGuests, roles) {
   const client = new ApolloClient({
     uri: "https://sandy-jem-wedding-site.herokuapp.com/v1alpha1/graphql",
     headers: {
-      "X-RSVP_EVENT_CODE": eventCode,
+      "X-RSVP_EVENT_CODE": eventData.event_code
     }
   });
 
-  const mutationQuery = generateRSVPMutation(
-    eventCode,
+  const createRSVPMutation = generateRSVPMutation(
+    eventData.event_code,
     mainGuest,
     additionalGuests,
     roles
   );
-  debugger;
-  return client.mutate({
-    mutation: mutationQuery
-  });
+
+  const mutations = [client.mutate({
+    mutation: createRSVPMutation
+  })];
+
+  const updateHelpNeededMutations = generateHelpNeededMutations(roles).map((mutationGql) =>
+    client.mutate({
+      mutation: mutationGql
+    })
+  );
+
+  return Promise.all(mutations.concat(updateHelpNeededMutations));
 }

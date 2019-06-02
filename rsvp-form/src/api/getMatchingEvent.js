@@ -12,8 +12,11 @@ export function getMatchingEvent(eventCode) {
         event_description
         event_date
         event_time
+        gift_policy
+        dress_code
         help_needed(where: {vacancies_remaining: {_gt: 0}}) {
           role_type
+          help_needed_id
         }
       }
     }

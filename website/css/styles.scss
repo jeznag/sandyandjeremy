@@ -122,7 +122,6 @@ html,body{
   font-size: 1.3em;
 }
 
-
 .date{
   font-weight: 300;
   font-size: 1.2em;
@@ -222,23 +221,15 @@ p{
   border-radius: 10px;
 }
 
-#main{
-  background-image: url("../images/c-3-color.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 #rsvp{
   background-image: url("../images/geometry2.png");
 }
-.rsvp-label{
+.label-highlight{
   position: relative;
   z-index: 1000;
 }
 
-.rsvp-label:after{
+.label-highlight:after{
   background: linear-gradient(to bottom, transparent 0%, transparent 60%, $yellow 60%, $yellow 88%, transparent 88%);
   content: '';
   z-index: -1000;
@@ -249,10 +240,9 @@ p{
   left: 0.3em;
 }
 
-.rsvp-label-2{
+.label-highlight-2{
   background: linear-gradient(to bottom, transparent 0%, transparent 55%, $yellow 55%, $yellow 90%, transparent 90%);
 }
-
 
 .subtitle{
   font-weight: 300 !important;

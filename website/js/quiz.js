@@ -4,7 +4,7 @@ var questions = [
   {
     question: "Where did Sandy and Jeremy meet?",
     answers: [
-      { answerText: "Spring break, Miami - cliché, we know", correct: false },
+      { answerText: "At Schoolies on the Gold Coast - cliché, we know", correct: false },
       { answerText: "On Tinder", correct: false },
       { answerText: "While ice skating", correct: false },
       { answerText: "At the society for creative anachronism", correct: false },
@@ -52,7 +52,7 @@ var questions = [
   {
     question: "Where did they get engaged?",
     answers: [
-      { answerText: "Miami, Florida - where it all began", correct: false },
+      { answerText: "Gold Coast - where it all began", correct: false },
       {
         answerText:
           "Lisbon, Portugal - Sandy thought it was a vacation with Jeremy's family",
@@ -140,7 +140,7 @@ var questions = [
 ];
 
 $(document).ready(function() {
-  if (!location.href.includes('quiz.html')) {
+  if (!location.href.includes('couple.html')) {
     return;
   }
 
@@ -241,7 +241,7 @@ $(document).ready(function() {
             numCorrectAnswers +
             "/" +
             questions.length +
-            "right.</strong></br><div class='is-size-5'> Pretty good! You must be quite close to Sandy and Jeremy... or you're a stalker. Scroll down for the full story!</div></div>"
+            " right.</strong></br><div class='is-size-5'> Pretty good! You must be quite close to Sandy and Jeremy... or you're a stalker. Scroll down for the full story!</div></div>"
         ).hide();
       } else if (percentageCorrect < 70 && percentageCorrect >= 30) {
         var result = $(
@@ -261,7 +261,7 @@ $(document).ready(function() {
         ).hide();
       }
       $("#couple-20").replaceWith(
-        '<div id="couple-20" class="column is-4 is-offset-1"><p class="title is-2 "><span class="rsvp-label">Your Results</span></p></div>'
+        '<div id="couple-20" class="column is-4 is-offset-1"><p class="title is-2 "><span class="label">Your Results</span></p></div>'
       );
       $("#question").replaceWith(result);
       $("#question").fadeIn("slow");

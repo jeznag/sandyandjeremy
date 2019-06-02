@@ -16,7 +16,7 @@ async function handleSubmit(values, eventData, setLoading, setSubmitted) {
 
   setLoading(true);
   try {
-    const createRsvpResult = await createRSVP(
+    await createRSVP(
       eventData,
       mainGuest,
       additionalGuests,
@@ -25,7 +25,6 @@ async function handleSubmit(values, eventData, setLoading, setSubmitted) {
     setLoading(false);
     setSubmitted(true);
   } catch (e) {
-    debugger;
     setLoading(false);
   }
 }

@@ -1,6 +1,4 @@
-[] Decrement vacant roles during mutation
-[] Focus on first name when adding new guest
 [] Add tests
-[] Clean up useState
+[] Clean up useState to just have on variable
 [] Typescript
 [] NextJS
