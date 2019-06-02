@@ -25,6 +25,7 @@ async function handleSubmit(values, eventData, setLoading, setSubmitted) {
     setLoading(false);
     setSubmitted(true);
   } catch (e) {
+    console.log(e);
     setLoading(false);
   }
 }
@@ -38,7 +39,12 @@ function getComponentToDisplay(
   setSubmitted
 ) {
   if (isSubmitted) {
-    return <span>Thanks! See you at the ceremony.</span>;
+    return (
+    <>
+      <p>Thanks! See you at the ceremony.</p>
+      <span role="img" aria-label="Success!" style={{fontSize:40}}>🎉</span>
+    </>
+    );
   }
 
   if (isLoading) {

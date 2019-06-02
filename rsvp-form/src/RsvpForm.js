@@ -140,6 +140,8 @@ const UnwrappedRSVPForm = props => {
           },
           {
             name: "dietaryRequirements",
+            validation: [() => {
+            }],
             field: () => (
               <Input.TextArea rows={4} placeholder={"Dietary Requirements"} />
             )

@@ -3,6 +3,10 @@ import { gql } from "apollo-boost";
 import { getRoleParts, ROLE_NAME_IDX, HELP_NEEDED_ID_IDX } from '../utils/getRoleParts';
 
 function getRoleMutationFragment(roles) {
+  if (!roles) {
+    return '[]';
+  }
+
   return `[
     ${roles.map(
       role =>
@@ -10,7 +14,8 @@ function getRoleMutationFragment(roles) {
         {
           role_name: "${getRoleParts(role.roleName)[ROLE_NAME_IDX]}",
           details: "${role.details}"
-        }`
+        }
+        `
     )}
   ]`.replace(/[\s]{2,}/g, " ");
 }
@@ -31,6 +36,9 @@ function getAdditionalGuestMutationFragment(eventCode, additionalGuests) {
 }
 
 function generateHelpNeededMutations(roles) {
+  if (!roles) {
+    return [];
+  }
   const rolesGroupedByHelpNeededId = roles.reduce((result, role) => {
     const helpNeededId = getRoleParts(role.roleName)[HELP_NEEDED_ID_IDX];
     if (!result[helpNeededId]) {
