@@ -288,18 +288,6 @@ p {
   position: absolute;
 }
 
-@media (orientation: portrait) and (min-width: 600px) {
-  #main {
-    background-image: url("../images/c-3-color-slim-ipad.jpg");
-  }
-}
-
-@media (orientation: portrait) and (max-width: 600px) {
-  #main {
-    background-image: url("../images/c-3-color-slim.jpg");
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .column-couple-text {
     padding-left: 2em !important;

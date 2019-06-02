@@ -99,7 +99,7 @@ const UnwrappedRSVPForm = props => {
 
     const queryParams = new URLSearchParams(window.location.search);
     const rsvpDataFromURL = queryParams.get("rsvp-details");
-    setInitialValueForGuests(JSON.parse(rsvpDataFromURL));
+    setInitialValueForGuests(JSON.parse(atob(rsvpDataFromURL)));
   }
 
   return (
