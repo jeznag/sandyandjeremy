@@ -89,7 +89,7 @@ export class FieldArray extends Component {
 
     const rows = keys.reduce((preResult, rowKey) => {
       const row = fields.map((fieldData, i) => {
-        const initialValueForField = initialValue && initialValue[rowKey][fieldData.name];
+        const initialValueForField = initialValue && initialValue[rowKey] && initialValue[rowKey][fieldData.name];
         return (<Form.Item key={`${rowKey}${fieldData.name}`}>
           {getFieldDecorator(`${name}[${rowKey}][${fieldData.name}]`, {
             initialValue: initialValueForField,
