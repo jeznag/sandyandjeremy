@@ -118,8 +118,8 @@ const UnwrappedRSVPForm = props => {
         initialValue={initialValueForGuests}
         name="guests"
         panelName={dataForThisRow => {
-          return `${dataForThisRow.firstName || ""} ${dataForThisRow.lastName ||
-            ""}`;
+          return `${dataForThisRow.firstName ||
+            ""} ${dataForThisRow.lastName || ""}`;
         }}
         fields={[
           {
@@ -132,16 +132,17 @@ const UnwrappedRSVPForm = props => {
           },
           {
             name: "email",
+            validation: [() => {}],
             field: () => <Input placeholder={"Email"} />
           },
           {
             name: "phone",
+            validation: [() => {}],
             field: () => <Input placeholder={"Phone"} />
           },
           {
             name: "dietaryRequirements",
-            validation: [() => {
-            }],
+            validation: [() => {}],
             field: () => (
               <Input.TextArea rows={4} placeholder={"Dietary Requirements"} />
             )
