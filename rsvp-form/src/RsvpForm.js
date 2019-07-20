@@ -53,7 +53,8 @@ const renderRolesSubform = (form, eventData) => {
           },
           {
             name: "details",
-            field: () => <Input.TextArea rows={4} placeholder={"Details"} />
+            field: () => <Input.TextArea rows={4} placeholder={"Details"} />,
+            validation: [() => {}]
           }
         ]}
       />
